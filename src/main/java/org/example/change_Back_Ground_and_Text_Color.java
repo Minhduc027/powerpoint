@@ -13,7 +13,7 @@ import java.io.IOException;
 public class change_Back_Ground_and_Text_Color {
 
     public static void main(String[] args) {
-        String folderPath = "C:\\Users\\User\\OneDrive\\Máy tính\\Chầu";
+        String folderPath = "C:\\Users\\User\\OneDrive\\Máy tính\\linh tinh\\Ca Đoàn\\MẸ THIÊN CHÚA";
 
         File folder = new File(folderPath);
         File[] files = folder.listFiles();
@@ -26,7 +26,10 @@ public class change_Back_Ground_and_Text_Color {
             }
         }
     }
-
+    static Color backGround = new Color(0,0,255);
+    static Color font = new Color(247, 253, 0);
+    static Color customBackGround = new Color(0,0,255);
+    static Color customFont = new Color(247, 253, 0);
     private static void changeBackgroundAndFontColor(String filePath) {
         try {
             FileInputStream fis = new FileInputStream(filePath);
@@ -35,18 +38,15 @@ public class change_Back_Ground_and_Text_Color {
                 XMLSlideShow pptx = new XMLSlideShow(fis);
 
                 for (XSLFSlide slide : pptx.getSlides()) {
-                    // Thay đổi màu nền ở đây (mã RGB)
                     XSLFBackground fill = slide.getBackground();
-                    //fill.setFillColor(new Color(0,0,255));
-                    fill.setFillColor(new Color(0, 0, 102, 255));
+                    fill.setFillColor(backGround);
                     for (XSLFShape shape : slide.getShapes()) {
                         if (shape instanceof XSLFTextShape) {
                             XSLFTextShape textShape = (XSLFTextShape) shape;
 
                             for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
                                 for (XSLFTextRun textRun : paragraph.getTextRuns()) {
-                                    textRun.setFontColor(new Color(255, 255, 255, 255));
-                                    //textRun.setFontColor(new Color(247, 253, 0)); // Thay đổi màu chữ ở đây (mã RGB)
+                                    textRun.setFontColor(font);
                                 }
                             }
                         }
@@ -65,16 +65,14 @@ public class change_Back_Ground_and_Text_Color {
                     if(fill.getPictureData()!= null){
                         continue;
                     }
-                    //fill.setForegroundColor(new Color(0,0,255));// Thay đổi màu nền ở đây (mã RGB)
-                    fill.setForegroundColor(new Color(0, 0, 102, 255));
+                    fill.setForegroundColor(backGround);
                     for (HSLFShape shape : slide.getShapes()) {
                         if (shape instanceof HSLFTextShape) {
                             HSLFTextShape textShape = (HSLFTextShape) shape;
 
                             for (HSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
                                 for (HSLFTextRun textRun : paragraph.getTextRuns()) {
-                                    textRun.setFontColor(new Color(255, 255, 255, 255));
-                                    //textRun.setFontColor(new Color(247, 253, 0)); // Thay đổi màu chữ ở đây (mã RGB)
+                                    textRun.setFontColor(font);
                                 }
                             }
                         }
